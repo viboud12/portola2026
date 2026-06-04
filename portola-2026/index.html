@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portola 2026 — Lineup, Spotify & Sets</title>
+<meta name="description" content="Every Portola 2026 artist with Spotify links, top tracks, DJ SoundCloud sets, and what makes each set unique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1d24e3; --blue2:#10157f; --ink:#0a0c4d;
+  --cream:#f4f0e2; --dim:rgba(244,240,226,.86); --line:rgba(244,240,226,.34);
+  --sp:#1ed760; --sc:#ff5a1f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; background:var(--blue)}
+body{
+  margin:0; background:var(--blue); color:var(--cream);
+  font-family:"Hanken Grotesk",system-ui,sans-serif; font-size:16px; line-height:1.45;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+body::before{ /* grain */
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.wrap{position:relative; z-index:1; max-width:1280px; margin:0 auto; padding:0 18px 80px;
+  background:var(--blue);
+  background-image:
+    radial-gradient(120% 60% at 88% 0, rgba(244,240,226,.16), transparent 55%),
+    radial-gradient(rgba(244,240,226,.05) 1.1px, transparent 1.2px);
+  background-size:auto, 18px 18px;}
+
+/* ---------- HERO ---------- */
+header.hero{padding:46px 0 22px; border-bottom:3px solid var(--cream); position:relative}
+.kicker{font-family:"Space Mono",monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--dim)}
+.word{display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin:6px 0 2px}
+.word h1{
+  font-family:"Anton",sans-serif; font-weight:400; margin:0; line-height:.82;
+  font-size:clamp(58px,15vw,168px); letter-spacing:-.01em; text-transform:uppercase;
+  text-shadow:5px 5px 0 var(--ink);
+}
+.yr{font-family:"Anton",sans-serif; font-size:clamp(20px,4vw,40px); background:var(--cream); color:var(--blue);
+  padding:4px 12px; transform:rotate(-3deg); align-self:center; box-shadow:4px 4px 0 var(--ink)}
+.meta{font-family:"Space Mono",monospace; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--cream); margin-top:8px}
+.meta b{background:var(--cream); color:var(--blue); padding:1px 7px}
+.lead{max-width:760px; margin:16px 0 0; color:var(--cream); font-size:15.5px}
+.lead .leg{display:inline-flex; align-items:center; gap:6px; font-family:"Space Mono",monospace; font-size:12px; margin-right:14px; color:var(--dim)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* ---------- CONTROLS ---------- */
+.controls{position:sticky; top:0; z-index:5; margin:18px -18px 26px; padding:14px 18px;
+  background:linear-gradient(var(--blue),rgba(29,36,227,.92)); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line); display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+.search{flex:1 1 240px; display:flex; align-items:center; gap:8px; background:rgba(244,240,226,.08);
+  border:1.5px solid var(--line); border-radius:2px; padding:10px 12px}
+.search:focus-within{border-color:var(--cream)}
+.search input{flex:1; background:transparent; border:0; outline:0; color:var(--cream); font-family:"Hanken Grotesk",sans-serif; font-size:15px}
+.search input::placeholder{color:var(--dim)}
+.search .mag{font-family:"Space Mono",monospace; color:var(--dim)}
+.pills{display:flex; gap:8px; flex-wrap:wrap}
+.pill{font-family:"Space Mono",monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  background:transparent; color:var(--cream); border:1.5px solid var(--line); padding:9px 13px; border-radius:2px; cursor:pointer}
+.pill:hover{border-color:var(--cream)}
+.pill.on{background:var(--cream); color:var(--blue); border-color:var(--cream); font-weight:700}
+.count{font-family:"Space Mono",monospace; font-size:12px; color:var(--dim); margin-left:auto}
+
+/* ---------- GRID + CARDS (one uniform style) ---------- */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:16px; align-items:start}
+.card{background:var(--cream); border:1.5px solid var(--cream); border-radius:3px; padding:16px 16px 18px;
+  display:flex; flex-direction:column; gap:10px; box-shadow:4px 4px 0 rgba(10,12,77,.28);
+  animation:rise .5s both; animation-delay:calc(var(--i)*20ms);
+  transition:transform .15s ease, box-shadow .15s ease}
+@keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+.card:hover{transform:translateY(-3px); box-shadow:7px 7px 0 rgba(10,12,77,.42)}
+.ch{display:flex; align-items:center; gap:8px}
+.badge{font-family:"Space Mono",monospace; font-size:10.5px; letter-spacing:.1em; color:var(--cream); background:var(--blue); padding:2px 7px; border-radius:2px}
+.hl{font-family:"Space Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--cream); background:var(--ink); padding:2px 7px; border-radius:2px; margin-left:auto}
+.artist{font-family:"Anton",sans-serif; font-weight:400; font-size:28px; line-height:1; letter-spacing:.005em;
+  color:var(--blue); text-decoration:none; text-transform:uppercase; text-shadow:2px 2px 0 rgba(16,21,127,.14)}
+.artist:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:13px; text-decoration:none; font-weight:500;
+  padding:6px 10px; border-radius:999px; border:1.4px solid rgba(16,21,127,.30); color:#16207a; line-height:1.1}
+.chip .ic{font-size:11px}
+.chip.sp .ic{color:#0f9e44}
+.chip.sp:hover{border-color:var(--sp); color:var(--ink); box-shadow:inset 0 0 0 1px var(--sp)}
+.chip.sc{border-color:rgba(255,90,31,.6)}
+.chip.sc .ic{color:var(--sc)}
+.chip.sc:hover{border-color:var(--sc); color:var(--ink); box-shadow:inset 0 0 0 1px var(--sc)}
+.why{margin:2px 0 0; font-size:14.5px; line-height:1.5; color:#171c5e; opacity:1}
+
+.empty{font-family:"Space Mono",monospace; color:var(--dim); padding:40px 0; text-align:center; grid-column:1/-1}
+
+footer{margin-top:34px; padding-top:18px; border-top:1px solid var(--line); font-family:"Space Mono",monospace;
+  font-size:11.5px; color:var(--dim); line-height:1.7}
+footer b{color:var(--cream)}
+a.link{color:var(--cream)}
+@media(max-width:560px){
+  .word h1{text-shadow:3px 3px 0 var(--ink)}
+  .count{width:100%; margin:2px 0 0}
+  .grid{grid-template-columns:1fr}
+}
+/* ---------- selection + spotify playlist builder ---------- */
+.sel{display:inline-flex;align-items:center;cursor:pointer;margin-right:2px}
+.sel input{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin:0;border:2px solid var(--blue);border-radius:5px;background:transparent;cursor:pointer;position:relative}
+.sel input:checked{background:var(--blue)}
+.sel input:checked::after{content:"✓";position:absolute;left:3px;top:-2px;color:var(--cream);font-size:14px;font-weight:800}
+.card.sel-on{outline:3px solid var(--blue);outline-offset:2px}
+.selall{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:var(--cream);border:1.5px solid var(--line);padding:9px 12px;border-radius:2px;cursor:pointer}
+.selall:hover{border-color:var(--cream)}
+.selbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--ink);border-top:2px solid var(--cream);box-shadow:0 -10px 28px rgba(0,0,0,.35)}
+.selbar-in{max-width:1280px;margin:0 auto;padding:12px 18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seln{font-family:"Space Mono",monospace;font-size:13px;color:var(--cream);white-space:nowrap}
+.seln b{color:#fff}
+.plname{flex:1 1 220px;min-width:150px;background:rgba(244,240,226,.10);border:1.5px solid var(--line);color:var(--cream);border-radius:3px;padding:10px 12px;font-family:"Hanken Grotesk",sans-serif;font-size:14px}
+.plname:focus{outline:none;border-color:var(--cream)}
+.btn{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.03em;border-radius:3px;padding:11px 16px;cursor:pointer;border:1.5px solid transparent;white-space:nowrap}
+.btn.primary{background:var(--sp);color:#06210f;font-weight:700;border-color:var(--sp)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.primary:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--cream)}
+.selmsg{flex-basis:100%;font-family:"Space Mono",monospace;font-size:12.5px;color:var(--dim);line-height:1.55;margin-top:2px}
+.selmsg:empty{display:none}
+.selmsg a{color:#fff}
+.selmsg.ok{color:#9ff5bf}
+.selmsg.err{color:#ffb3a0}
+body.has-selbar .wrap{padding-bottom:180px}
+@media(max-width:560px){ .plname{flex-basis:100%} .btn{flex:1} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">In association with Non Plus Ultra · Goldenvoice presents</div>
+    <div class="word"><h1>Portola</h1><span class="yr">2026</span></div>
+    <div class="meta"><b>Pier 80</b> &nbsp;San Francisco&nbsp; · &nbsp;Sep 26–27&nbsp; · &nbsp;<b>21+</b></div>
+    <p class="lead">
+      Every act on the bill — tap any name or track to open it on Spotify, and DJs link straight to a standout SoundCloud set.
+      <br>
+      <span class="leg"><span class="dot" style="background:var(--sp)"></span>Spotify (top tracks = broadest popularity, not raw streams)</span>
+      <span class="leg"><span class="dot" style="background:var(--sc)"></span>SoundCloud set / profile</span>
+      <br><span class="leg" style="color:var(--cream)">✓ Tick the box on any act, then build a Spotify playlist from your picks.</span>
+    </p>
+  </header>
+
+  <div class="controls">
+    <label class="search"><span class="mag">⌕</span><input id="q" type="search" placeholder="Search artists, tracks, notes…" autocomplete="off"></label>
+    <div class="pills" id="pills">
+      <button class="pill on" data-d="all-on">All</button>
+      <button class="pill" data-d="sat">Sat · Sep 26</button>
+      <button class="pill" data-d="sun">Sun · Sep 27</button>
+      <button class="pill" data-d="all">All weekend</button>
+    </div>
+    <button class="selall" id="selall" type="button">Select all shown</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <main class="grid" id="grid">
+<article class="card head" data-day="sat" data-text="robyn dancing on my own call your girlfriend saturday headliner   billed as her only festival appearance of 2026, behind new album &#x27;sexistential&#x27;." style="--i:0">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="0" aria-label="Add Robyn to playlist"></label><span class="badge">SAT · 9/26</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Robyn" target="_blank" rel="noopener">Robyn</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Robyn%20Dancing%20On%20My%20Own" target="_blank" rel="noopener"><span class="ic">▷</span>Dancing On My Own</a><a class="chip sp" href="https://open.spotify.com/search/Robyn%20Call%20Your%20Girlfriend" target="_blank" rel="noopener"><span class="ic">▷</span>Call Your Girlfriend</a></div>
+<p class="why">Saturday headliner — billed as her ONLY festival appearance of 2026, behind new album &#x27;Sexistential&#x27;.</p>
+</article>
+<article class="card head" data-day="sat" data-text="dog blood middle finger turn off the lights skrillex × boys noize reuniting under the alias for the first time since 2019   their only show of the year. co-headlines saturday." style="--i:1">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="1" aria-label="Add Dog Blood to playlist"></label><span class="badge">SAT · 9/26</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Dog%20Blood" target="_blank" rel="noopener">Dog Blood</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Dog%20Blood%20Middle%20Finger" target="_blank" rel="noopener"><span class="ic">▷</span>Middle Finger</a><a class="chip sp" href="https://open.spotify.com/search/Dog%20Blood%20Turn%20Off%20The%20Lights" target="_blank" rel="noopener"><span class="ic">▷</span>Turn Off The Lights</a></div>
+<p class="why">Skrillex × Boys Noize reuniting under the alias for the first time since 2019 — their only show of the year. Co-headlines Saturday.</p>
+</article>
+<article class="card" data-day="sat" data-text="soulwax ny excuse e talking belgian dance-punk legends (the 2manydjs dewaele brothers)   also the masterminds behind the all-weekend despacio system." style="--i:2">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="2" aria-label="Add Soulwax to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Soulwax" target="_blank" rel="noopener">Soulwax</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Soulwax%20NY%20Excuse" target="_blank" rel="noopener"><span class="ic">▷</span>NY Excuse</a><a class="chip sp" href="https://open.spotify.com/search/Soulwax%20E%20Talking" target="_blank" rel="noopener"><span class="ic">▷</span>E Talking</a></div>
+<p class="why">Belgian dance-punk legends (the 2manydjs Dewaele brothers) — also the masterminds behind the all-weekend Despacio system.</p>
+</article>
+<article class="card" data-day="sat" data-text="prospa ecstasy (over &amp; over) want need love uk duo whose recent releases became fixtures of this summer&#x27;s club circuit." style="--i:3">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="3" aria-label="Add Prospa to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Prospa" target="_blank" rel="noopener">Prospa</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Prospa%20Ecstasy%20%28Over%20%26%20Over%29" target="_blank" rel="noopener"><span class="ic">▷</span>Ecstasy (Over &amp; Over)</a><a class="chip sp" href="https://open.spotify.com/search/Prospa%20Want%20Need%20Love" target="_blank" rel="noopener"><span class="ic">▷</span>Want Need Love</a></div>
+<p class="why">UK duo whose recent releases became fixtures of this summer&#x27;s club circuit.</p>
+</article>
+<article class="card" data-day="sat" data-text="kettama b o d y yosemite galway high-bpm house riser   peak-time dancefloor energy. &#x27;yosemite&#x27; w/ interplanetary criminal." style="--i:4">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="4" aria-label="Add KETTAMA to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/KETTAMA" target="_blank" rel="noopener">KETTAMA</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/KETTAMA%20B%20O%20D%20Y" target="_blank" rel="noopener"><span class="ic">▷</span>B O D Y</a><a class="chip sp" href="https://open.spotify.com/search/KETTAMA%20Yosemite" target="_blank" rel="noopener"><span class="ic">▷</span>Yosemite</a></div>
+<p class="why">Galway high-BPM house riser — peak-time dancefloor energy. &#x27;Yosemite&#x27; w/ Interplanetary Criminal.</p>
+</article>
+<article class="card" data-day="sat" data-text="fatboy slim praise you right here, right now big-beat icon   the heritage headline name anchoring a bill full of newcomers." style="--i:5">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="5" aria-label="Add Fatboy Slim to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Fatboy%20Slim" target="_blank" rel="noopener">Fatboy Slim</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Fatboy%20Slim%20Praise%20You" target="_blank" rel="noopener"><span class="ic">▷</span>Praise You</a><a class="chip sp" href="https://open.spotify.com/search/Fatboy%20Slim%20Right%20Here%2C%20Right%20Now" target="_blank" rel="noopener"><span class="ic">▷</span>Right Here, Right Now</a></div>
+<p class="why">Big-beat icon — the heritage headline name anchoring a bill full of newcomers.</p>
+</article>
+<article class="card" data-day="sat" data-text="skepta shutdown that&#x27;s not me uk grime icon   a rare rap/grime presence amid the dance lineup." style="--i:6">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="6" aria-label="Add Skepta to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Skepta" target="_blank" rel="noopener">Skepta</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Skepta%20Shutdown" target="_blank" rel="noopener"><span class="ic">▷</span>Shutdown</a><a class="chip sp" href="https://open.spotify.com/search/Skepta%20That%27s%20Not%20Me" target="_blank" rel="noopener"><span class="ic">▷</span>That&#x27;s Not Me</a></div>
+<p class="why">UK grime icon — a rare rap/grime presence amid the dance lineup.</p>
+</article>
+<article class="card" data-day="sat" data-text="tove lo habits (stay high) talking body completes portola&#x27;s &#x27;swedish trinity&#x27; with robyn &amp; zara   pop with a late-night edge." style="--i:7">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="7" aria-label="Add Tove Lo to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Tove%20Lo" target="_blank" rel="noopener">Tove Lo</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Tove%20Lo%20Habits%20%28Stay%20High%29" target="_blank" rel="noopener"><span class="ic">▷</span>Habits (Stay High)</a><a class="chip sp" href="https://open.spotify.com/search/Tove%20Lo%20Talking%20Body" target="_blank" rel="noopener"><span class="ic">▷</span>Talking Body</a></div>
+<p class="why">Completes Portola&#x27;s &#x27;Swedish trinity&#x27; with Robyn &amp; Zara — pop with a late-night edge.</p>
+</article>
+<article class="card" data-day="sat" data-text="max styler body high i know you want to california bass/house producer (dim mak)   near-hometown set; topped 1001tracklists&#x27; 2025 producer list." style="--i:8">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="8" aria-label="Add Max Styler to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Max%20Styler" target="_blank" rel="noopener">Max Styler</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Max%20Styler%20Body%20High" target="_blank" rel="noopener"><span class="ic">▷</span>Body High</a><a class="chip sp" href="https://open.spotify.com/search/Max%20Styler%20I%20Know%20You%20Want%20To" target="_blank" rel="noopener"><span class="ic">▷</span>I Know You Want To</a></div>
+<p class="why">California bass/house producer (Dim Mak) — near-hometown set; topped 1001Tracklists&#x27; 2025 producer list.</p>
+</article>
+<article class="card" data-day="sat" data-text="beltran smack yo&#x27; mandarino back-to-back set with ben sterling   two tech-house heavyweights on one deck." style="--i:9">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="9" aria-label="Add Beltran to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Beltran" target="_blank" rel="noopener">Beltran</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Beltran%20Smack%20Yo%27" target="_blank" rel="noopener"><span class="ic">▷</span>Smack Yo&#x27;</a><a class="chip sp" href="https://open.spotify.com/search/Beltran%20Mandarino" target="_blank" rel="noopener"><span class="ic">▷</span>Mandarino</a></div>
+<p class="why">Back-to-back set with Ben Sterling — two tech-house heavyweights on one deck.</p>
+</article>
+<article class="card" data-day="sat" data-text="ben sterling the energy   b2b with beltran   leader of london&#x27;s tech-house &#x27;new school&#x27;; broke out on hot creations." style="--i:10">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="10" aria-label="Add Ben Sterling to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Ben%20Sterling" target="_blank" rel="noopener">Ben Sterling</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Ben%20Sterling%20The%20Energy" target="_blank" rel="noopener"><span class="ic">▷</span>The Energy</a></div>
+<p class="why">B2B with Beltran — leader of London&#x27;s tech-house &#x27;new school&#x27;; broke out on Hot Creations.</p>
+</article>
+<article class="card" data-day="sat" data-text="fcukers bon bon devil&#x27;s cut buzzy new york dance-punk trio   one of the bill&#x27;s breakout live acts." style="--i:11">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="11" aria-label="Add Fcukers to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Fcukers" target="_blank" rel="noopener">Fcukers</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Fcukers%20Bon%20Bon" target="_blank" rel="noopener"><span class="ic">▷</span>Bon Bon</a><a class="chip sp" href="https://open.spotify.com/search/Fcukers%20Devil%27s%20Cut" target="_blank" rel="noopener"><span class="ic">▷</span>Devil&#x27;s Cut</a></div>
+<p class="why">Buzzy New York dance-punk trio — one of the bill&#x27;s breakout live acts.</p>
+</article>
+<article class="card" data-day="sat" data-text="mike d 5d switch up sabotage beastie boys&#x27; mike d debuting his brand-new live band &#x27;5d&#x27; with mostly unreleased material   a just-launched, rarely-seen project." style="--i:12">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="12" aria-label="Add Mike D 5D to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Mike%20D%205D" target="_blank" rel="noopener">Mike D 5D</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Mike%20D%205D%20Switch%20Up" target="_blank" rel="noopener"><span class="ic">▷</span>Switch Up</a><a class="chip sp" href="https://open.spotify.com/search/Mike%20D%205D%20Sabotage" target="_blank" rel="noopener"><span class="ic">▷</span>Sabotage</a></div>
+<p class="why">Beastie Boys&#x27; Mike D debuting his brand-new live band &#x27;5D&#x27; with mostly unreleased material — a just-launched, rarely-seen project.</p>
+</article>
+<article class="card" data-day="sat" data-text="groove armada superstylin&#x27; at the river late-&#x27;90s/2000s dance staple   a nostalgia heavyweight on the bill." style="--i:13">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="13" aria-label="Add Groove Armada to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Groove%20Armada" target="_blank" rel="noopener">Groove Armada</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Groove%20Armada%20Superstylin%27" target="_blank" rel="noopener"><span class="ic">▷</span>Superstylin&#x27;</a><a class="chip sp" href="https://open.spotify.com/search/Groove%20Armada%20At%20the%20River" target="_blank" rel="noopener"><span class="ic">▷</span>At the River</a></div>
+<p class="why">Late-&#x27;90s/2000s dance staple — a nostalgia heavyweight on the bill.</p>
+</article>
+<article class="card" data-day="sat" data-text="dj shadow nobody speak midnight in a perfect world norcal native celebrating 30 years of his landmark &#x27;endtroducing.....&#x27;   a hometown anniversary set. &#x27;nobody speak&#x27; feat. run the jewels." style="--i:14">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="14" aria-label="Add DJ Shadow to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/DJ%20Shadow" target="_blank" rel="noopener">DJ Shadow</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/DJ%20Shadow%20Nobody%20Speak" target="_blank" rel="noopener"><span class="ic">▷</span>Nobody Speak</a><a class="chip sp" href="https://open.spotify.com/search/DJ%20Shadow%20Midnight%20in%20a%20Perfect%20World" target="_blank" rel="noopener"><span class="ic">▷</span>Midnight in a Perfect World</a></div>
+<p class="why">NorCal native celebrating 30 YEARS of his landmark &#x27;Endtroducing.....&#x27; — a hometown anniversary set. &#x27;Nobody Speak&#x27; feat. Run the Jewels.</p>
+</article>
+<article class="card" data-day="sat" data-text="bassvictim     basspunk/electro wildcard   energy lives on soundcloud, not streaming." style="--i:15">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="15" aria-label="Add Bassvictim to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Bassvictim" target="_blank" rel="noopener">Bassvictim</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/bassvictimm" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Basspunk/electro wildcard — energy lives on SoundCloud, not streaming.</p>
+</article>
+<article class="card" data-day="sat" data-text="nimino i only smoke when i drink save a soul uk downtempo/house producer riding 2024 breakout &#x27;i only smoke when i drink&#x27;." style="--i:16">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="16" aria-label="Add nimino to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/nimino" target="_blank" rel="noopener">nimino</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/nimino%20I%20Only%20Smoke%20When%20I%20Drink" target="_blank" rel="noopener"><span class="ic">▷</span>I Only Smoke When I Drink</a><a class="chip sp" href="https://open.spotify.com/search/nimino%20Save%20a%20Soul" target="_blank" rel="noopener"><span class="ic">▷</span>Save a Soul</a></div>
+<p class="why">UK downtempo/house producer riding 2024 breakout &#x27;I Only Smoke When I Drink&#x27;.</p>
+</article>
+<article class="card" data-day="sat" data-text="melanie c i turn to you never be the same again sporty spice (spice girls) playing a surprise dj set   the lineup&#x27;s pure pop-nostalgia curveball." style="--i:17">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="17" aria-label="Add Melanie C to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Melanie%20C" target="_blank" rel="noopener">Melanie C</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Melanie%20C%20I%20Turn%20to%20You" target="_blank" rel="noopener"><span class="ic">▷</span>I Turn to You</a><a class="chip sp" href="https://open.spotify.com/search/Melanie%20C%20Never%20Be%20the%20Same%20Again" target="_blank" rel="noopener"><span class="ic">▷</span>Never Be the Same Again</a></div>
+<p class="why">Sporty Spice (Spice Girls) playing a surprise DJ set — the lineup&#x27;s pure pop-nostalgia curveball.</p>
+</article>
+<article class="card" data-day="sat" data-text="oskar med k make me feel make me feel (with khalid) norwegian house riser behind the charting &#x27;make me feel&#x27;   later remixed with khalid on his album." style="--i:18">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="18" aria-label="Add oskar med k to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/oskar%20med%20k" target="_blank" rel="noopener">oskar med k</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/oskar%20med%20k%20Make%20Me%20Feel" target="_blank" rel="noopener"><span class="ic">▷</span>Make Me Feel</a><a class="chip sp" href="https://open.spotify.com/search/oskar%20med%20k%20Make%20Me%20Feel%20%28with%20Khalid%29" target="_blank" rel="noopener"><span class="ic">▷</span>Make Me Feel (with Khalid)</a><a class="chip sc" href="https://soundcloud.com/oskarmedkmedk" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Norwegian house riser behind the charting &#x27;Make Me Feel&#x27; — later remixed with Khalid on his album.</p>
+</article>
+<article class="card" data-day="sat" data-text="jigitz     underground producer/dj   catch the live feel on soundcloud." style="--i:19">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="19" aria-label="Add jigitz to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/jigitz" target="_blank" rel="noopener">jigitz</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/jigitz" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Underground producer/DJ — catch the live feel on SoundCloud.</p>
+</article>
+<article class="card" data-day="sat" data-text="tricky hell is round the corner overcome bristol trip-hop pioneer (massive attack lineage)   a rare, moody presence on a dance bill." style="--i:20">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="20" aria-label="Add Tricky to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Tricky" target="_blank" rel="noopener">Tricky</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Tricky%20Hell%20Is%20Round%20the%20Corner" target="_blank" rel="noopener"><span class="ic">▷</span>Hell Is Round the Corner</a><a class="chip sp" href="https://open.spotify.com/search/Tricky%20Overcome" target="_blank" rel="noopener"><span class="ic">▷</span>Overcome</a></div>
+<p class="why">Bristol trip-hop pioneer (Massive Attack lineage) — a rare, moody presence on a dance bill.</p>
+</article>
+<article class="card" data-day="sat" data-text="chloé caillet the one nywtf fast-rising nyc house dj/producer &amp; smiile label boss. &#x27;the one&#x27; feat. jocelyn brown." style="--i:21">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="21" aria-label="Add Chloé Caillet to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Chlo%C3%A9%20Caillet" target="_blank" rel="noopener">Chloé Caillet</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Chlo%C3%A9%20Caillet%20The%20One" target="_blank" rel="noopener"><span class="ic">▷</span>The One</a><a class="chip sp" href="https://open.spotify.com/search/Chlo%C3%A9%20Caillet%20NYWTF" target="_blank" rel="noopener"><span class="ic">▷</span>NYWTF</a></div>
+<p class="why">Fast-rising NYC house DJ/producer &amp; SMIILE label boss. &#x27;The One&#x27; feat. Jocelyn Brown.</p>
+</article>
+<article class="card" data-day="sat" data-text="jyoty     a selector&#x27;s selector (rinse fm / boiler room favorite)   crate-digging sets, not original productions." style="--i:22">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="22" aria-label="Add Jyoty to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Jyoty" target="_blank" rel="noopener">Jyoty</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/platform/jyoty-boiler-room-london" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">A selector&#x27;s selector (Rinse FM / Boiler Room favorite) — crate-digging sets, not original productions.</p>
+</article>
+<article class="card" data-day="sat" data-text="ranger trucco     b2b with alisha   groovy, vocal-driven house from a fast-rising us name." style="--i:23">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="23" aria-label="Add Ranger Trucco to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Ranger%20Trucco" target="_blank" rel="noopener">Ranger Trucco</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/ranger-trucco" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">B2B with Alisha — groovy, vocal-driven house from a fast-rising US name.</p>
+</article>
+<article class="card" data-day="sat" data-text="alisha     b2b with ranger trucco   tech-house selector (common name; verify)." style="--i:24">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="24" aria-label="Add Alisha to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/ALISHA%20dj" target="_blank" rel="noopener">Alisha</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=ALISHA%20tech%20house" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">B2B with Ranger Trucco — tech-house selector (common name; verify).</p>
+</article>
+<article class="card" data-day="sat" data-text="mind enterprises idol misty jungle italo-disco revivalist   his track &#x27;idol&#x27; became kungs&#x27; global hit &#x27;never going home&#x27;." style="--i:25">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="25" aria-label="Add Mind Enterprises to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Mind%20Enterprises" target="_blank" rel="noopener">Mind Enterprises</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Mind%20Enterprises%20Idol" target="_blank" rel="noopener"><span class="ic">▷</span>Idol</a><a class="chip sp" href="https://open.spotify.com/search/Mind%20Enterprises%20Misty%20Jungle" target="_blank" rel="noopener"><span class="ic">▷</span>Misty Jungle</a></div>
+<p class="why">Italo-disco revivalist — his track &#x27;Idol&#x27; became Kungs&#x27; global hit &#x27;Never Going Home&#x27;.</p>
+</article>
+<article class="card" data-day="sat" data-text="six sex 4 novioss tocame argentina&#x27;s &#x27;queen of the perreo rave&#x27;   ravetón energy. &#x27;tocame&#x27; w/ dillom hit #1 on argentina&#x27;s viral 50." style="--i:26">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="26" aria-label="Add Six Sex to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Six%20Sex" target="_blank" rel="noopener">Six Sex</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Six%20Sex%204%20noviosS" target="_blank" rel="noopener"><span class="ic">▷</span>4 noviosS</a><a class="chip sp" href="https://open.spotify.com/search/Six%20Sex%20Tocame" target="_blank" rel="noopener"><span class="ic">▷</span>Tocame</a></div>
+<p class="why">Argentina&#x27;s &#x27;queen of the perreo rave&#x27; — ravetón energy. &#x27;Tocame&#x27; w/ Dillom hit #1 on Argentina&#x27;s Viral 50.</p>
+</article>
+<article class="card" data-day="sat" data-text="nate sib afraid why can&#x27;t you see la hyperpop singer (nme &#x27;essential emerging artist&#x27; 2025)   a live act, not a dj set. &#x27;afraid&#x27; w/ 2hollis." style="--i:27">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="27" aria-label="Add nate sib to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/nate%20sib" target="_blank" rel="noopener">nate sib</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/nate%20sib%20Afraid" target="_blank" rel="noopener"><span class="ic">▷</span>Afraid</a><a class="chip sp" href="https://open.spotify.com/search/nate%20sib%20Why%20Can%27t%20You%20See" target="_blank" rel="noopener"><span class="ic">▷</span>Why Can&#x27;t You See</a></div>
+<p class="why">LA hyperpop singer (NME &#x27;essential emerging artist&#x27; 2025) — a live act, not a DJ set. &#x27;Afraid&#x27; w/ 2hollis.</p>
+</article>
+<article class="card" data-day="sat" data-text="mgna crrrta     internet-native club/hyperpop edits   soundcloud-bred." style="--i:28">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="28" aria-label="Add MGNA Crrrta to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/MGNA%20Crrrta" target="_blank" rel="noopener">MGNA Crrrta</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/mgna-crrrta" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Internet-native club/hyperpop edits — SoundCloud-bred.</p>
+</article>
+<article class="card" data-day="sat" data-text="sam alfred     uk house/ukg selector." style="--i:29">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="29" aria-label="Add Sam Alfred to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Sam%20Alfred" target="_blank" rel="noopener">Sam Alfred</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/samalfred567" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">UK house/UKG selector.</p>
+</article>
+<article class="card" data-day="sat" data-text="gelli haha bounce house normalize la experimental-pop &#x27;shapeshifter&#x27; (angel abaya)   a playful, theatrical live show." style="--i:30">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="30" aria-label="Add Gelli Haha to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Gelli%20Haha" target="_blank" rel="noopener">Gelli Haha</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Gelli%20Haha%20Bounce%20House" target="_blank" rel="noopener"><span class="ic">▷</span>Bounce House</a><a class="chip sp" href="https://open.spotify.com/search/Gelli%20Haha%20Normalize" target="_blank" rel="noopener"><span class="ic">▷</span>Normalize</a></div>
+<p class="why">LA experimental-pop &#x27;shapeshifter&#x27; (Angel Abaya) — a playful, theatrical live show.</p>
+</article>
+<article class="card" data-day="sat" data-text="airwolf paradise don&#x27;t hurt me baby son of a gun melbourne house producer with heavy tastemaker support (solomun, dom dolla, peggy gou)." style="--i:31">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="31" aria-label="Add Airwolf Paradise to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Airwolf%20Paradise" target="_blank" rel="noopener">Airwolf Paradise</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Airwolf%20Paradise%20Don%27t%20Hurt%20Me%20Baby" target="_blank" rel="noopener"><span class="ic">▷</span>Don&#x27;t Hurt Me Baby</a><a class="chip sp" href="https://open.spotify.com/search/Airwolf%20Paradise%20Son%20of%20a%20Gun" target="_blank" rel="noopener"><span class="ic">▷</span>Son of a Gun</a></div>
+<p class="why">Melbourne house producer with heavy tastemaker support (Solomun, Dom Dolla, Peggy Gou).</p>
+</article>
+<article class="card" data-day="sat" data-text="erika     co-founder of sf&#x27;s program audio label/radio   a local-scene spotlight pick. b2b w/ sfcowboy." style="--i:32">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="32" aria-label="Add erika to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/erika" target="_blank" rel="noopener">erika</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=erika%20program%20audio" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Co-founder of SF&#x27;s Program Audio label/radio — a local-scene spotlight pick. B2B w/ sfcowboy.</p>
+</article>
+<article class="card" data-day="sat" data-text="sfcowboy     co-founder of sf&#x27;s program audio (mixmag 2025 &#x27;one to watch&#x27;)   bay area underground. b2b w/ erika." style="--i:33">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="33" aria-label="Add sfcowboy to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/sfcowboy" target="_blank" rel="noopener">sfcowboy</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/platform/sfcowboy-san-francisco" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Co-founder of SF&#x27;s Program Audio (Mixmag 2025 &#x27;one to watch&#x27;) — Bay Area underground. B2B w/ erika.</p>
+</article>
+<article class="card" data-day="sat" data-text="felly fell     homegrown sf dj/producer   breaks, dubstep &amp; jungle." style="--i:34">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="34" aria-label="Add Felly Fell to playlist"></label><span class="badge">SAT · 9/26</span></header>
+<a class="artist" href="https://open.spotify.com/search/Felly%20Fell" target="_blank" rel="noopener">Felly Fell</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/fellyfell805" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Homegrown SF DJ/producer — breaks, dubstep &amp; jungle.</p>
+</article>
+<article class="card head" data-day="sun" data-text="swedish house mafia don&#x27;t you worry child save the world sunday headliner   one of only two announced us appearances by the trio this year." style="--i:35">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="35" aria-label="Add Swedish House Mafia to playlist"></label><span class="badge">SUN · 9/27</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Swedish%20House%20Mafia" target="_blank" rel="noopener">Swedish House Mafia</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Swedish%20House%20Mafia%20Don%27t%20You%20Worry%20Child" target="_blank" rel="noopener"><span class="ic">▷</span>Don&#x27;t You Worry Child</a><a class="chip sp" href="https://open.spotify.com/search/Swedish%20House%20Mafia%20Save%20the%20World" target="_blank" rel="noopener"><span class="ic">▷</span>Save the World</a></div>
+<p class="why">Sunday headliner — one of only TWO announced US appearances by the trio this year.</p>
+</article>
+<article class="card head" data-day="sun" data-text="tiësto the business red lights playing a special set &#x27;in the warehouse&#x27; rather than the main stage   a more intimate, club-style billing." style="--i:36">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="36" aria-label="Add Tiësto to playlist"></label><span class="badge">SUN · 9/27</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Ti%C3%ABsto" target="_blank" rel="noopener">Tiësto</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Ti%C3%ABsto%20The%20Business" target="_blank" rel="noopener"><span class="ic">▷</span>The Business</a><a class="chip sp" href="https://open.spotify.com/search/Ti%C3%ABsto%20Red%20Lights" target="_blank" rel="noopener"><span class="ic">▷</span>Red Lights</a></div>
+<p class="why">Playing a special set &#x27;in the warehouse&#x27; rather than the main stage — a more intimate, club-style billing.</p>
+</article>
+<article class="card head" data-day="sun" data-text="zara larsson lush life never forget you swedish pop star bringing her &#x27;midnight sun&#x27; era   part of portola&#x27;s swedish through-line." style="--i:37">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="37" aria-label="Add Zara Larsson to playlist"></label><span class="badge">SUN · 9/27</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Zara%20Larsson" target="_blank" rel="noopener">Zara Larsson</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Zara%20Larsson%20Lush%20Life" target="_blank" rel="noopener"><span class="ic">▷</span>Lush Life</a><a class="chip sp" href="https://open.spotify.com/search/Zara%20Larsson%20Never%20Forget%20You" target="_blank" rel="noopener"><span class="ic">▷</span>Never Forget You</a></div>
+<p class="why">Swedish pop star bringing her &#x27;Midnight Sun&#x27; era — part of Portola&#x27;s Swedish through-line.</p>
+</article>
+<article class="card head" data-day="sun" data-text="four tet baby two thousand and seventeen co-headliner   among the most revered figures in modern electronic music." style="--i:38">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="38" aria-label="Add Four Tet to playlist"></label><span class="badge">SUN · 9/27</span><span class="hl">headliner</span></header>
+<a class="artist" href="https://open.spotify.com/search/Four%20Tet" target="_blank" rel="noopener">Four Tet</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Four%20Tet%20Baby" target="_blank" rel="noopener"><span class="ic">▷</span>Baby</a><a class="chip sp" href="https://open.spotify.com/search/Four%20Tet%20Two%20Thousand%20and%20Seventeen" target="_blank" rel="noopener"><span class="ic">▷</span>Two Thousand and Seventeen</a></div>
+<p class="why">Co-headliner — among the most revered figures in modern electronic music.</p>
+</article>
+<article class="card" data-day="sun" data-text="parcels tieduprightnow free australian electropop band   a full-band live groove, not a dj set." style="--i:39">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="39" aria-label="Add Parcels to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Parcels" target="_blank" rel="noopener">Parcels</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Parcels%20Tieduprightnow" target="_blank" rel="noopener"><span class="ic">▷</span>Tieduprightnow</a><a class="chip sp" href="https://open.spotify.com/search/Parcels%20Free" target="_blank" rel="noopener"><span class="ic">▷</span>Free</a></div>
+<p class="why">Australian electropop band — a full-band live groove, not a DJ set.</p>
+</article>
+<article class="card" data-day="sun" data-text="mochakk da fonk jealous brazil&#x27;s house &#x27;flag bearer&#x27;   viral, high-charisma sets. &#x27;da fonk&#x27; feat. joni." style="--i:40">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="40" aria-label="Add Mochakk to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Mochakk" target="_blank" rel="noopener">Mochakk</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Mochakk%20Da%20Fonk" target="_blank" rel="noopener"><span class="ic">▷</span>Da Fonk</a><a class="chip sp" href="https://open.spotify.com/search/Mochakk%20Jealous" target="_blank" rel="noopener"><span class="ic">▷</span>Jealous</a></div>
+<p class="why">Brazil&#x27;s house &#x27;flag bearer&#x27; — viral, high-charisma sets. &#x27;Da Fonk&#x27; feat. Joni.</p>
+</article>
+<article class="card" data-day="sun" data-text="marlon hoffstadt it&#x27;s that time i got you aka dj daddy trance   euphoric, high-bpm eurodance/trance revival." style="--i:41">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="41" aria-label="Add Marlon Hoffstadt to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Marlon%20Hoffstadt" target="_blank" rel="noopener">Marlon Hoffstadt</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Marlon%20Hoffstadt%20It%27s%20That%20Time" target="_blank" rel="noopener"><span class="ic">▷</span>It&#x27;s That Time</a><a class="chip sp" href="https://open.spotify.com/search/Marlon%20Hoffstadt%20I%20Got%20You" target="_blank" rel="noopener"><span class="ic">▷</span>I Got You</a></div>
+<p class="why">aka DJ Daddy Trance — euphoric, high-BPM Eurodance/trance revival.</p>
+</article>
+<article class="card" data-day="sun" data-text="horsegiirl my barn my rules obsessed viral &#x27;farm-rave&#x27; persona   horse mask and costume, full meme-to-mainstage crossover." style="--i:42">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="42" aria-label="Add horsegiirL to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/horsegiirL" target="_blank" rel="noopener">horsegiirL</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/horsegiirL%20My%20Barn%20My%20Rules" target="_blank" rel="noopener"><span class="ic">▷</span>My Barn My Rules</a><a class="chip sp" href="https://open.spotify.com/search/horsegiirL%20Obsessed" target="_blank" rel="noopener"><span class="ic">▷</span>Obsessed</a></div>
+<p class="why">Viral &#x27;farm-rave&#x27; persona — horse mask and costume, full meme-to-mainstage crossover.</p>
+</article>
+<article class="card" data-day="sun" data-text="overmono so u kno good lies uk brother duo   one of the most acclaimed live electronic acts of the moment." style="--i:43">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="43" aria-label="Add Overmono to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Overmono" target="_blank" rel="noopener">Overmono</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Overmono%20So%20U%20Kno" target="_blank" rel="noopener"><span class="ic">▷</span>So U Kno</a><a class="chip sp" href="https://open.spotify.com/search/Overmono%20Good%20Lies" target="_blank" rel="noopener"><span class="ic">▷</span>Good Lies</a></div>
+<p class="why">UK brother duo — one of the most acclaimed live electronic acts of the moment.</p>
+</article>
+<article class="card" data-day="sun" data-text="zulan forever campeón argentine house/garage riser   2025 breakout single &#x27;forever&#x27;." style="--i:44">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="44" aria-label="Add ZULAN to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/ZULAN" target="_blank" rel="noopener">ZULAN</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/ZULAN%20Forever" target="_blank" rel="noopener"><span class="ic">▷</span>Forever</a><a class="chip sp" href="https://open.spotify.com/search/ZULAN%20Campe%C3%B3n" target="_blank" rel="noopener"><span class="ic">▷</span>Campeón</a></div>
+<p class="why">Argentine house/garage riser — 2025 breakout single &#x27;Forever&#x27;.</p>
+</article>
+<article class="card" data-day="sun" data-text="ninajirachi pure luck cut the rope australian dance futurist   fresh off the acclaimed debut album &#x27;i love my computer&#x27;." style="--i:45">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="45" aria-label="Add Ninajirachi to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Ninajirachi" target="_blank" rel="noopener">Ninajirachi</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Ninajirachi%20Pure%20Luck" target="_blank" rel="noopener"><span class="ic">▷</span>Pure Luck</a><a class="chip sp" href="https://open.spotify.com/search/Ninajirachi%20Cut%20the%20Rope" target="_blank" rel="noopener"><span class="ic">▷</span>Cut the Rope</a></div>
+<p class="why">Australian dance futurist — fresh off the acclaimed debut album &#x27;I Love My Computer&#x27;.</p>
+</article>
+<article class="card" data-day="sun" data-text="underscores locals (girls like us) music making her portola debut   genre-blurring hyperpop, fresh off coachella." style="--i:46">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="46" aria-label="Add underscores to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/underscores" target="_blank" rel="noopener">underscores</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/underscores%20Locals%20%28Girls%20like%20us%29" target="_blank" rel="noopener"><span class="ic">▷</span>Locals (Girls like us)</a><a class="chip sp" href="https://open.spotify.com/search/underscores%20Music" target="_blank" rel="noopener"><span class="ic">▷</span>Music</a></div>
+<p class="why">Making her Portola DEBUT — genre-blurring hyperpop, fresh off Coachella.</p>
+</article>
+<article class="card" data-day="sun" data-text="adéla homewrecked machinegirl slovak singer (ex-&#x27;dream academy&#x27; contestant)   hyperpop-leaning debut ep &#x27;the provocateur&#x27;." style="--i:47">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="47" aria-label="Add ADÉLA to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/AD%C3%89LA" target="_blank" rel="noopener">ADÉLA</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/AD%C3%89LA%20Homewrecked" target="_blank" rel="noopener"><span class="ic">▷</span>Homewrecked</a><a class="chip sp" href="https://open.spotify.com/search/AD%C3%89LA%20MachineGirl" target="_blank" rel="noopener"><span class="ic">▷</span>MachineGirl</a></div>
+<p class="why">Slovak singer (ex-&#x27;Dream Academy&#x27; contestant) — hyperpop-leaning debut EP &#x27;The Provocateur&#x27;.</p>
+</article>
+<article class="card" data-day="sun" data-text="sg lewis chemicals impact performing live (not a dj set). his track &#x27;impact&#x27; features robyn &amp; channel tres   both also on this lineup." style="--i:48">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="48" aria-label="Add SG Lewis to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/SG%20Lewis" target="_blank" rel="noopener">SG Lewis</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/SG%20Lewis%20Chemicals" target="_blank" rel="noopener"><span class="ic">▷</span>Chemicals</a><a class="chip sp" href="https://open.spotify.com/search/SG%20Lewis%20Impact" target="_blank" rel="noopener"><span class="ic">▷</span>Impact</a></div>
+<p class="why">Performing LIVE (not a DJ set). His track &#x27;Impact&#x27; features Robyn &amp; Channel Tres — both also on this lineup.</p>
+</article>
+<article class="card" data-day="sun" data-text="kelela lmk washed away contemporary r&amp;b / progressive electronic   a vocal-led standout among the djs." style="--i:49">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="49" aria-label="Add Kelela to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Kelela" target="_blank" rel="noopener">Kelela</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Kelela%20LMK" target="_blank" rel="noopener"><span class="ic">▷</span>LMK</a><a class="chip sp" href="https://open.spotify.com/search/Kelela%20Washed%20Away" target="_blank" rel="noopener"><span class="ic">▷</span>Washed Away</a></div>
+<p class="why">Contemporary R&amp;B / progressive electronic — a vocal-led standout among the DJs.</p>
+</article>
+<article class="card" data-day="sun" data-text="daphni yes, i know ye ye caribou&#x27;s dan snaith in pure club mode   looser and more dancefloor than his caribou project." style="--i:50">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="50" aria-label="Add Daphni to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Daphni" target="_blank" rel="noopener">Daphni</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Daphni%20Yes%2C%20I%20Know" target="_blank" rel="noopener"><span class="ic">▷</span>Yes, I Know</a><a class="chip sp" href="https://open.spotify.com/search/Daphni%20Ye%20Ye" target="_blank" rel="noopener"><span class="ic">▷</span>Ye Ye</a></div>
+<p class="why">Caribou&#x27;s Dan Snaith in pure club mode — looser and more dancefloor than his Caribou project.</p>
+</article>
+<article class="card" data-day="sun" data-text="jt okay ex for a reason city girls&#x27; jt in her solo era   a rare hip-hop slot. &#x27;ex for a reason&#x27; w/ summer walker." style="--i:51">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="51" aria-label="Add JT to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/JT%20rapper" target="_blank" rel="noopener">JT</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/JT%20rapper%20Okay" target="_blank" rel="noopener"><span class="ic">▷</span>Okay</a><a class="chip sp" href="https://open.spotify.com/search/JT%20rapper%20Ex%20for%20a%20Reason" target="_blank" rel="noopener"><span class="ic">▷</span>Ex for a Reason</a></div>
+<p class="why">City Girls&#x27; JT in her solo era — a rare hip-hop slot. &#x27;Ex for a Reason&#x27; w/ Summer Walker.</p>
+</article>
+<article class="card" data-day="sun" data-text="baby j     undercard selector   common name, verify on soundcloud." style="--i:52">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="52" aria-label="Add Baby J to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Baby%20J" target="_blank" rel="noopener">Baby J</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=Baby%20J" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Undercard selector — common name, verify on SoundCloud.</p>
+</article>
+<article class="card" data-day="sun" data-text="channel tres controlla topdown versatile west-coast beatsmith/vocalist   also features on sg lewis&#x27;s &#x27;impact&#x27; this weekend." style="--i:53">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="53" aria-label="Add Channel Tres to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Channel%20Tres" target="_blank" rel="noopener">Channel Tres</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Channel%20Tres%20Controlla" target="_blank" rel="noopener"><span class="ic">▷</span>Controlla</a><a class="chip sp" href="https://open.spotify.com/search/Channel%20Tres%20Topdown" target="_blank" rel="noopener"><span class="ic">▷</span>Topdown</a></div>
+<p class="why">Versatile West-Coast beatsmith/vocalist — also features on SG Lewis&#x27;s &#x27;Impact&#x27; this weekend.</p>
+</article>
+<article class="card" data-day="sun" data-text="vtss make you scream sober raving warsaw-born hard-techno force   relentless, high-energy, industrial-leaning." style="--i:54">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="54" aria-label="Add VTSS to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/VTSS" target="_blank" rel="noopener">VTSS</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/VTSS%20Make%20You%20Scream" target="_blank" rel="noopener"><span class="ic">▷</span>Make You Scream</a><a class="chip sp" href="https://open.spotify.com/search/VTSS%20Sober%20Raving" target="_blank" rel="noopener"><span class="ic">▷</span>Sober Raving</a></div>
+<p class="why">Warsaw-born hard-techno force — relentless, high-energy, industrial-leaning.</p>
+</article>
+<article class="card" data-day="sun" data-text="ear     stylized lowercase undercard act   verify on soundcloud." style="--i:55">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="55" aria-label="Add ear to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/ear" target="_blank" rel="noopener">ear</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=ear%20dj" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Stylized lowercase undercard act — verify on SoundCloud.</p>
+</article>
+<article class="card" data-day="sun" data-text="brunello     minimal/deep-tech selector on the rise." style="--i:56">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="56" aria-label="Add Brunello to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Brunello" target="_blank" rel="noopener">Brunello</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=Brunello" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Minimal/deep-tech selector on the rise.</p>
+</article>
+<article class="card" data-day="sun" data-text="ben ufo     hessle audio co-founder   a legendary pure selector who famously releases no original tracks." style="--i:57">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="57" aria-label="Add Ben UFO to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Ben%20UFO" target="_blank" rel="noopener">Ben UFO</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/platform/ben-ufo-4-hours-boiler-room" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Hessle Audio co-founder — a legendary pure selector who famously releases no original tracks.</p>
+</article>
+<article class="card" data-day="sun" data-text="silva bumpa get it shawtyyy i don&#x27;t want u sheffield ukg/bassline revivalist. &#x27;get it shawtyyy&#x27; w/ interplanetary criminal." style="--i:58">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="58" aria-label="Add Silva Bumpa to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Silva%20Bumpa" target="_blank" rel="noopener">Silva Bumpa</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Silva%20Bumpa%20Get%20It%20Shawtyyy" target="_blank" rel="noopener"><span class="ic">▷</span>Get It Shawtyyy</a><a class="chip sp" href="https://open.spotify.com/search/Silva%20Bumpa%20I%20Don%27t%20Want%20U" target="_blank" rel="noopener"><span class="ic">▷</span>I Don&#x27;t Want U</a></div>
+<p class="why">Sheffield UKG/bassline revivalist. &#x27;Get It Shawtyyy&#x27; w/ Interplanetary Criminal.</p>
+</article>
+<article class="card" data-day="sun" data-text="azzecca other side who&#x27;s that girl chicago dark-house/techno riser   launched by the 8m+ streamed &#x27;other side&#x27;." style="--i:59">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="59" aria-label="Add Azzecca to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Azzecca" target="_blank" rel="noopener">Azzecca</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Azzecca%20Other%20Side" target="_blank" rel="noopener"><span class="ic">▷</span>Other Side</a><a class="chip sp" href="https://open.spotify.com/search/Azzecca%20Who%27s%20That%20Girl" target="_blank" rel="noopener"><span class="ic">▷</span>Who&#x27;s That Girl</a></div>
+<p class="why">Chicago dark-house/techno riser — launched by the 8M+ streamed &#x27;Other Side&#x27;.</p>
+</article>
+<article class="card" data-day="sun" data-text="dean turnley actin&#x27; tough   melbourne house riser   2026 breakout &#x27;actin&#x27; tough&#x27;." style="--i:60">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="60" aria-label="Add Dean Turnley to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Dean%20Turnley" target="_blank" rel="noopener">Dean Turnley</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Dean%20Turnley%20Actin%27%20Tough" target="_blank" rel="noopener"><span class="ic">▷</span>Actin&#x27; Tough</a><a class="chip sc" href="https://soundcloud.com/dean_turnley" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">Melbourne house riser — 2026 breakout &#x27;Actin&#x27; Tough&#x27;.</p>
+</article>
+<article class="card" data-day="sun" data-text="riria     london/tokyo selector   see her viral boiler room tokyo set (tohji pres. u-ha)." style="--i:61">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="61" aria-label="Add riria to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/riria" target="_blank" rel="noopener">riria</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/floatingriri" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">London/Tokyo selector — see her viral Boiler Room Tokyo set (Tohji pres. u-ha).</p>
+</article>
+<article class="card" data-day="sun" data-text="torren foot be randy new bottega australian house mainstay   aria-nominated &#x27;be randy&#x27; w/ dom dolla; &#x27;new bottega&#x27; feat. azealia banks." style="--i:62">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="62" aria-label="Add Torren Foot to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Torren%20Foot" target="_blank" rel="noopener">Torren Foot</a>
+<div class="chips"><a class="chip sp" href="https://open.spotify.com/search/Torren%20Foot%20Be%20Randy" target="_blank" rel="noopener"><span class="ic">▷</span>Be Randy</a><a class="chip sp" href="https://open.spotify.com/search/Torren%20Foot%20New%20Bottega" target="_blank" rel="noopener"><span class="ic">▷</span>New Bottega</a></div>
+<p class="why">Australian house mainstay — ARIA-nominated &#x27;Be Randy&#x27; w/ Dom Dolla; &#x27;New Bottega&#x27; feat. Azealia Banks.</p>
+</article>
+<article class="card" data-day="sun" data-text="clearcast     sf-scene selector   verify on soundcloud." style="--i:63">
+<header class="ch"><label class="sel" title="Add to playlist"><input type="checkbox" class="selbox" data-i="63" aria-label="Add Clearcast to playlist"></label><span class="badge">SUN · 9/27</span></header>
+<a class="artist" href="https://open.spotify.com/search/Clearcast" target="_blank" rel="noopener">Clearcast</a>
+<div class="chips"><a class="chip sc" href="https://soundcloud.com/search?q=Clearcast" target="_blank" rel="noopener"><span class="ic">≈</span>SoundCloud set</a></div>
+<p class="why">SF-scene selector — verify on SoundCloud.</p>
+</article>
+<article class="card" data-day="all" data-text="despacio     runs all weekend   not a set time but a room: the mcintosh-powered audiophile sound-system experience built by james murphy (lcd soundsystem) &amp; soulwax/2manydjs." style="--i:64">
+<header class="ch"><span class="badge">ALL WKND</span></header>
+<a class="artist" href="https://open.spotify.com/search/Despacio%20Soulwax" target="_blank" rel="noopener">DESPACIO</a>
+<div class="chips"></div>
+<p class="why">Runs ALL WEEKEND — not a set time but a room: the McIntosh-powered audiophile sound-system experience built by James Murphy (LCD Soundsystem) &amp; Soulwax/2manydjs.</p>
+</article>
+    <div class="empty" id="empty" hidden>No acts match that search.</div>
+  </main>
+
+  <div class="selbar" id="selbar" hidden>
+    <div class="selbar-in">
+      <span class="seln"><b id="selcount">0</b> selected</span>
+      <input id="plname" class="plname" type="text" value="Portola 2026 — My Picks" aria-label="Playlist name">
+      <button id="create" class="btn primary" type="button">Create Spotify playlist</button>
+      <button id="clearsel" class="btn ghost" type="button">Clear</button>
+      <div class="selmsg" id="selmsg"></div>
+    </div>
+  </div>
+
+  <footer>
+    <b>64 artists + Despacio</b> · Saturday headliners Robyn &amp; Dog Blood · Sunday headliner Swedish House Mafia.<br>
+    Unofficial fan reference built from the public lineup announcement. Spotify links open a search that lands on the artist/track; SoundCloud links point to a set or profile. Not affiliated with Goldenvoice or Portola.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), grid=document.getElementById('grid'),
+      cards=[].slice.call(grid.querySelectorAll('.card')),
+      empty=document.getElementById('empty'), count=document.getElementById('count'),
+      pills=document.getElementById('pills'), day='all-on';
+  function apply(){
+    var term=q.value.trim().toLowerCase(), n=0;
+    cards.forEach(function(c){
+      var okDay = (day==='all-on') || (c.dataset.day===day);
+      var okTxt = !term || c.dataset.text.indexOf(term)>-1;
+      var show = okDay && okTxt;
+      c.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    empty.hidden = n>0;
+    count.textContent = 'Showing ' + n + ' act' + (n===1?'':'s');
+  }
+  q.addEventListener('input', apply);
+  pills.addEventListener('click', function(e){
+    var b=e.target.closest('.pill'); if(!b) return;
+    [].forEach.call(pills.children,function(p){p.classList.remove('on')});
+    b.classList.add('on'); day=b.dataset.d; apply();
+  });
+  apply();
+})();
+</script>
+<script type="application/json" id="acts-data">[{"i": 0, "q": "Robyn", "t": ["Dancing On My Own", "Call Your Girlfriend"]}, {"i": 1, "q": "Dog Blood", "t": ["Middle Finger", "Turn Off The Lights"]}, {"i": 2, "q": "Soulwax", "t": ["NY Excuse", "E Talking"]}, {"i": 3, "q": "Prospa", "t": ["Ecstasy (Over & Over)", "Want Need Love"]}, {"i": 4, "q": "KETTAMA", "t": ["B O D Y", "Yosemite"]}, {"i": 5, "q": "Fatboy Slim", "t": ["Praise You", "Right Here, Right Now"]}, {"i": 6, "q": "Skepta", "t": ["Shutdown", "That's Not Me"]}, {"i": 7, "q": "Tove Lo", "t": ["Habits (Stay High)", "Talking Body"]}, {"i": 8, "q": "Max Styler", "t": ["Body High", "I Know You Want To"]}, {"i": 9, "q": "Beltran", "t": ["Smack Yo'", "Mandarino"]}, {"i": 10, "q": "Ben Sterling", "t": ["The Energy"]}, {"i": 11, "q": "Fcukers", "t": ["Bon Bon", "Devil's Cut"]}, {"i": 12, "q": "Mike D 5D", "t": ["Switch Up", "Sabotage"]}, {"i": 13, "q": "Groove Armada", "t": ["Superstylin'", "At the River"]}, {"i": 14, "q": "DJ Shadow", "t": ["Nobody Speak", "Midnight in a Perfect World"]}, {"i": 15, "q": "Bassvictim", "t": []}, {"i": 16, "q": "nimino", "t": ["I Only Smoke When I Drink", "Save a Soul"]}, {"i": 17, "q": "Melanie C", "t": ["I Turn to You", "Never Be the Same Again"]}, {"i": 18, "q": "oskar med k", "t": ["Make Me Feel", "Make Me Feel (with Khalid)"]}, {"i": 19, "q": "jigitz", "t": []}, {"i": 20, "q": "Tricky", "t": ["Hell Is Round the Corner", "Overcome"]}, {"i": 21, "q": "Chloé Caillet", "t": ["The One", "NYWTF"]}, {"i": 22, "q": "Jyoty", "t": []}, {"i": 23, "q": "Ranger Trucco", "t": []}, {"i": 24, "q": "ALISHA dj", "t": []}, {"i": 25, "q": "Mind Enterprises", "t": ["Idol", "Misty Jungle"]}, {"i": 26, "q": "Six Sex", "t": ["4 noviosS", "Tocame"]}, {"i": 27, "q": "nate sib", "t": ["Afraid", "Why Can't You See"]}, {"i": 28, "q": "MGNA Crrrta", "t": []}, {"i": 29, "q": "Sam Alfred", "t": []}, {"i": 30, "q": "Gelli Haha", "t": ["Bounce House", "Normalize"]}, {"i": 31, "q": "Airwolf Paradise", "t": ["Don't Hurt Me Baby", "Son of a Gun"]}, {"i": 32, "q": "erika", "t": []}, {"i": 33, "q": "sfcowboy", "t": []}, {"i": 34, "q": "Felly Fell", "t": []}, {"i": 35, "q": "Swedish House Mafia", "t": ["Don't You Worry Child", "Save the World"]}, {"i": 36, "q": "Tiësto", "t": ["The Business", "Red Lights"]}, {"i": 37, "q": "Zara Larsson", "t": ["Lush Life", "Never Forget You"]}, {"i": 38, "q": "Four Tet", "t": ["Baby", "Two Thousand and Seventeen"]}, {"i": 39, "q": "Parcels", "t": ["Tieduprightnow", "Free"]}, {"i": 40, "q": "Mochakk", "t": ["Da Fonk", "Jealous"]}, {"i": 41, "q": "Marlon Hoffstadt", "t": ["It's That Time", "I Got You"]}, {"i": 42, "q": "horsegiirL", "t": ["My Barn My Rules", "Obsessed"]}, {"i": 43, "q": "Overmono", "t": ["So U Kno", "Good Lies"]}, {"i": 44, "q": "ZULAN", "t": ["Forever", "Campeón"]}, {"i": 45, "q": "Ninajirachi", "t": ["Pure Luck", "Cut the Rope"]}, {"i": 46, "q": "underscores", "t": ["Locals (Girls like us)", "Music"]}, {"i": 47, "q": "ADÉLA", "t": ["Homewrecked", "MachineGirl"]}, {"i": 48, "q": "SG Lewis", "t": ["Chemicals", "Impact"]}, {"i": 49, "q": "Kelela", "t": ["LMK", "Washed Away"]}, {"i": 50, "q": "Daphni", "t": ["Yes, I Know", "Ye Ye"]}, {"i": 51, "q": "JT rapper", "t": ["Okay", "Ex for a Reason"]}, {"i": 52, "q": "Baby J", "t": []}, {"i": 53, "q": "Channel Tres", "t": ["Controlla", "Topdown"]}, {"i": 54, "q": "VTSS", "t": ["Make You Scream", "Sober Raving"]}, {"i": 55, "q": "ear", "t": []}, {"i": 56, "q": "Brunello", "t": []}, {"i": 57, "q": "Ben UFO", "t": []}, {"i": 58, "q": "Silva Bumpa", "t": ["Get It Shawtyyy", "I Don't Want U"]}, {"i": 59, "q": "Azzecca", "t": ["Other Side", "Who's That Girl"]}, {"i": 60, "q": "Dean Turnley", "t": ["Actin' Tough"]}, {"i": 61, "q": "riria", "t": []}, {"i": 62, "q": "Torren Foot", "t": ["Be Randy", "New Bottega"]}, {"i": 63, "q": "Clearcast", "t": []}]</script>
+<script>
+(function(){
+  "use strict";
+  /* ============================================================
+     SPOTIFY PLAYLIST BUILDER  —  CONFIG
+     1) Create an app at https://developer.spotify.com/dashboard
+        (the app owner needs Spotify Premium).
+     2) Paste your Client ID below.
+     3) In the app's settings, add a Redirect URI that EXACTLY matches
+        the value shown in the bar if you click Create before configuring
+        (it is location.origin + path, e.g. https://you.github.io/portola-2026/).
+     4) Under "User Management", add the Spotify accounts allowed to
+        CREATE playlists (Development mode allows up to 5).
+     ============================================================ */
+  var CONFIG = {
+    CLIENT_ID: "",                                       // <-- paste your Spotify app Client ID
+    REDIRECT_URI: location.origin + location.pathname,   // must EXACTLY match a Redirect URI in your app
+    SCOPES: "playlist-modify-public playlist-modify-private"
+  };
+  /* ============================================================ */
+
+  var ACTS = JSON.parse(document.getElementById('acts-data').textContent || '[]');
+  var byIndex = {}; ACTS.forEach(function(a){ byIndex[a.i] = a; });
+
+  var grid=document.getElementById('grid'), selbar=document.getElementById('selbar'),
+      selcount=document.getElementById('selcount'), plname=document.getElementById('plname'),
+      createBtn=document.getElementById('create'), clearBtn=document.getElementById('clearsel'),
+      selmsg=document.getElementById('selmsg'), selallBtn=document.getElementById('selall');
+
+  function setMsg(t,cls){ selmsg.innerHTML=t||''; selmsg.className='selmsg'+(cls?' '+cls:''); }
+  function selected(){ return [].slice.call(grid.querySelectorAll('.selbox:checked')); }
+  function refresh(){ var n=selected().length; selcount.textContent=n; selbar.hidden=(n===0); document.body.classList.toggle('has-selbar', n>0); }
+
+  grid.addEventListener('change', function(e){
+    var b=e.target.closest('.selbox'); if(!b) return;
+    var c=b.closest('.card'); if(c) c.classList.toggle('sel-on', b.checked);
+    refresh();
+  });
+  clearBtn.addEventListener('click', function(){
+    selected().forEach(function(b){ b.checked=false; var c=b.closest('.card'); if(c) c.classList.remove('sel-on'); });
+    setMsg(''); refresh();
+  });
+  selallBtn.addEventListener('click', function(){
+    var vis=[].slice.call(grid.querySelectorAll('.card')).filter(function(c){return c.style.display!=='none';});
+    var boxes=vis.map(function(c){return c.querySelector('.selbox');}).filter(Boolean);
+    var all=boxes.length>0 && boxes.every(function(b){return b.checked;});
+    boxes.forEach(function(b){ b.checked=!all; var c=b.closest('.card'); if(c) c.classList.toggle('sel-on', b.checked); });
+    refresh();
+  });
+
+  /* ---- PKCE auth (no client secret; safe for static hosting) ---- */
+  function rand(n){var a=new Uint8Array(n);crypto.getRandomValues(a);return Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2);}).join('');}
+  function b64url(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+  async function challenge(v){return b64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)));}
+  function getToken(){ var t=sessionStorage.getItem('sp_tok'), e=+sessionStorage.getItem('sp_exp')||0; return (t && Date.now()<e)?t:null; }
+  function saveToken(j){ sessionStorage.setItem('sp_tok', j.access_token); sessionStorage.setItem('sp_exp', Date.now()+(j.expires_in*1000)-60000); }
+
+  async function login(){
+    var v=rand(48); sessionStorage.setItem('sp_v', v);
+    var st=rand(8); sessionStorage.setItem('sp_st', st);
+    var p=new URLSearchParams({client_id:CONFIG.CLIENT_ID, response_type:'code', redirect_uri:CONFIG.REDIRECT_URI, scope:CONFIG.SCOPES, code_challenge_method:'S256', code_challenge:await challenge(v), state:st});
+    location.href='https://accounts.spotify.com/authorize?'+p.toString();
+  }
+  async function handleRedirect(){
+    var qp=new URLSearchParams(location.search);
+    if(qp.get('error')){ history.replaceState({},'',location.pathname); return false; }
+    var code=qp.get('code'); if(!code) return false;
+    if(qp.get('state')!==sessionStorage.getItem('sp_st')){ history.replaceState({},'',location.pathname); return false; }
+    var body=new URLSearchParams({client_id:CONFIG.CLIENT_ID, grant_type:'authorization_code', code:code, redirect_uri:CONFIG.REDIRECT_URI, code_verifier:sessionStorage.getItem('sp_v')||''});
+    try{
+      var r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body});
+      var j=await r.json(); history.replaceState({},'',location.pathname);
+      if(j.access_token){ saveToken(j); return true; }
+    }catch(e){ history.replaceState({},'',location.pathname); }
+    return false;
+  }
+
+  /* ---- Web API ---- */
+  function api(path,opts){ opts=opts||{};
+    return fetch('https://api.spotify.com/v1'+path, Object.assign({},opts,{headers:Object.assign({Authorization:'Bearer '+getToken(),'Content-Type':'application/json'},opts.headers||{})}));
+  }
+  async function searchOne(q){
+    var r=await api('/search?type=track&limit=3&q='+encodeURIComponent(q)); if(!r.ok) return null;
+    var j=await r.json(); var it=j&&j.tracks&&j.tracks.items&&j.tracks.items[0]; return it?it.uri:null;
+  }
+  async function resolve(act){
+    var out=[];
+    if(act.t && act.t.length){
+      for(var k=0;k<act.t.length;k++){
+        var u=await searchOne(act.q+' '+act.t[k]) || await searchOne('track:"'+act.t[k]+'" artist:"'+act.q+'"');
+        if(u) out.push(u);
+      }
+    } else { /* pure DJ / no curated track: grab a representative track */
+      var u2=await searchOne('artist:"'+act.q+'"') || await searchOne(act.q);
+      if(u2) out.push(u2);
+    }
+    return out;
+  }
+
+  async function build(picks,name){
+    createBtn.disabled=true;
+    var uris=[], miss=0;
+    for(var i=0;i<picks.length;i++){
+      setMsg('Finding tracks on Spotify… ('+(i+1)+'/'+picks.length+')');
+      try{ var got=await resolve(picks[i]); if(got.length) uris=uris.concat(got); else miss++; }catch(e){ miss++; }
+    }
+    uris=uris.filter(function(v,idx,arr){return arr.indexOf(v)===idx;});
+    if(!uris.length){ setMsg('Couldn\'t find any tracks for that selection.','err'); createBtn.disabled=false; return; }
+    setMsg('Creating your playlist…');
+    try{
+      var cr=await api('/me/playlists',{method:'POST',body:JSON.stringify({name:(name||'Portola 2026 — My Picks'), description:'Built from the Portola 2026 lineup.', public:false})});
+      if(cr.status===401){ sessionStorage.removeItem('sp_tok'); setMsg('Session expired — tap Create again to reconnect.','err'); createBtn.disabled=false; return; }
+      if(cr.status===403){ setMsg('Spotify returned 403 — this account isn\'t added to the app yet. In Development mode you must add it (up to 5) under User Management in the app dashboard.','err'); createBtn.disabled=false; return; }
+      if(!cr.ok){ setMsg('Spotify error creating the playlist ('+cr.status+').','err'); createBtn.disabled=false; return; }
+      var pl=await cr.json();
+      for(var j=0;j<uris.length;j+=100){ await api('/playlists/'+pl.id+'/items',{method:'POST',body:JSON.stringify({uris:uris.slice(j,j+100)})}); }
+      var link=(pl.external_urls&&pl.external_urls.spotify)||('https://open.spotify.com/playlist/'+pl.id);
+      setMsg('✓ Added '+uris.length+' track'+(uris.length===1?'':'s')+(miss?(' · '+miss+' not found'):'')+'. <a href="'+link+'" target="_blank" rel="noopener"><b>Open your playlist →</b></a>','ok');
+    }catch(e){ setMsg('Something went wrong talking to Spotify.','err'); }
+    createBtn.disabled=false;
+  }
+
+  async function run(){
+    var boxes=selected(); if(!boxes.length) return;
+    if(!CONFIG.CLIENT_ID){ setMsg('To enable this, paste your Spotify <b>Client ID</b> into the CONFIG block in this page\'s source, and register this exact redirect URI in your app:<br><b>'+CONFIG.REDIRECT_URI+'</b>','err'); return; }
+    var picks=boxes.map(function(b){return byIndex[+b.dataset.i];}).filter(Boolean);
+    if(!getToken()){ sessionStorage.setItem('sp_pending', JSON.stringify({ids:picks.map(function(a){return a.i;}), name:plname.value})); await login(); return; }
+    await build(picks, plname.value);
+  }
+  createBtn.addEventListener('click', run);
+
+  /* on load: finish the auth round-trip and resume a pending build */
+  (async function init(){
+    refresh();
+    if(location.search.indexOf('code=')>-1 || location.search.indexOf('error=')>-1){
+      var ok=await handleRedirect(); var pend=sessionStorage.getItem('sp_pending');
+      if(ok && pend){
+        sessionStorage.removeItem('sp_pending'); var p=JSON.parse(pend);
+        p.ids.forEach(function(id){ var b=grid.querySelector('.selbox[data-i="'+id+'"]'); if(b){ b.checked=true; var c=b.closest('.card'); if(c) c.classList.add('sel-on'); } });
+        if(p.name) plname.value=p.name; refresh();
+        await build(p.ids.map(function(id){return byIndex[id];}).filter(Boolean), p.name);
+      } else if(ok){ setMsg('Connected to Spotify — pick artists and tap Create.','ok'); }
+    }
+  })();
+})();
+</script>
+</body>
+</html>
